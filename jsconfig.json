@@ -1,7 +1,20 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@styles": ["./src/styles"],
+      "@components": ["./src/components"],
     }
-  }
+  },
+  "exclude": [
+    "./node_modules",
+    "./.next"
+  ],
+  "include": [
+    "./src/**/*"
+  ]
 }

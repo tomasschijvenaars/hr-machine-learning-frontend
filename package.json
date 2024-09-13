@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=8192 next dev -p 3000",
+    "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=8192 next dev -p 420",
+    "wdev": "next dev -p 420",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .js,.jsx .",
@@ -15,7 +16,12 @@
     "react-dom": "^18",
     "next": "14.2.11",
     "prop-types": "^15.8.1",
-    "@mui/material": "^5.16.7"
+    "@emotion/cache": "^11.13.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.7",
+    "@mui/lab": "^5.0.0-alpha.173"
   },
   "devDependencies": {
     "eslint": "^8",
