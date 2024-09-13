@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development NODE_OPTIONS=--max_old_space_size=8192 next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --ext .js,.jsx . --fix",
+    "clean": "rm -rf node_modules .next"
   },
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.11"
+    "next": "14.2.11",
+    "prop-types": "^15.8.1",
+    "@mui/material": "^5.16.7"
   },
   "devDependencies": {
     "eslint": "^8",
