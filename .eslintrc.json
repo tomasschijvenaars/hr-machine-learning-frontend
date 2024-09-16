@@ -1,3 +1,25 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2023": true
+  },
+  "extends": ["next/core-web-vitals"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@constants", "./src/utils/constants"],
+          ["@hooks", "./src/hooks"],
+          ["@layouts", "./src/layouts"],
+          ["@modules", "./src/modules"],
+          ["@public", "./public"]
+        ]
+      }
+    }
+  },
+  "rules": {
+    "react/no-unknown-property": "error"
+  }
 }

@@ -6,15 +6,14 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@styles": ["./src/styles"],
       "@components": ["./src/components"],
+      "@constants": ["./src/utils/constants"],
+      "@helpers": ["./src/utils/helpers"],
+      "@layouts": ["./src/layouts"],
+      "@themes": ["./src/themes"],
+      "@hooks": ["./src/hooks"]
     }
   },
-  "exclude": [
-    "./node_modules",
-    "./.next"
-  ],
-  "include": [
-    "./src/**/*"
-  ]
+  "exclude": ["./node_modules", "./.next"],
+  "include": ["./src/**/*"]
 }

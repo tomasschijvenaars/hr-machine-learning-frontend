@@ -11,8 +11,12 @@ const nextConfig = {
   pageExtensions: ["page.jsx", "page.js"],
   webpack: config => {
     const webpackConfig = config;
-    webpackConfig.resolve.alias["@styles"] = path.join(__dirname, "./src/styles");
     webpackConfig.resolve.alias["@components"] = path.join(__dirname, "./src/components");
+    webpackConfig.resolve.alias["@constants"] = path.join(__dirname, "./src/utils/constants");
+    webpackConfig.resolve.alias["@helpers"] = path.join(__dirname, "./src/utils/helpers");
+    webpackConfig.resolve.alias["@layouts"] = path.join(__dirname, "./src/layouts");
+    webpackConfig.resolve.alias["@themes"] = path.join(__dirname, "./src/themes");
+    webpackConfig.resolve.alias["@hooks"] = path.join(__dirname, "./src/hooks");
     return webpackConfig;
   },
 };
