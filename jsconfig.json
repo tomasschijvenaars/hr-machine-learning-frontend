@@ -8,10 +8,12 @@
     "paths": {
       "@components": ["./src/components"],
       "@constants": ["./src/utils/constants"],
+      "@fields": ["./src/components/field"],
+      "@forms": ["./src/forms"],
       "@helpers": ["./src/utils/helpers"],
+      "@hooks": ["./src/hooks"],
       "@layouts": ["./src/layouts"],
-      "@themes": ["./src/themes"],
-      "@hooks": ["./src/hooks"]
+      "@themes": ["./src/themes"]
     }
   },
   "exclude": ["./node_modules", "./.next"],
