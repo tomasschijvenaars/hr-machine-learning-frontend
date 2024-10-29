@@ -1,20 +1,43 @@
-import { createContext, useMemo } from "react";
+import { createContext, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
 // Utils
-import { HOME_PATH, LOGIN_PATH } from "@constants/path.const";
+import { HOME_PATH, REGISTER_PATH } from "@constants/path.const";
+
+// Actions
+import { getUser } from "@actions";
 
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const router = useRouter();
 
-  const currentUser = { first_name: "Jeremy" };
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {        
+        if (typeof window !== "undefined") {
+          const userId = sessionStorage.getItem("userId");
+
+          const loggedInUser = await getUser(userId);
+
+          return setUser(loggedInUser);
+        }
+      } catch (error) {
+        console.error('Error loading candidate:', error);
+      }
+    };
+
+    getData();
+  }, []);
+
+  const currentUser = user;
 
   const logout = async () => {
     try {
-      await router.replace(LOGIN_PATH);
+      await router.replace(REGISTER_PATH);
     } finally {
       sessionStorage.clear();
     }
@@ -32,7 +55,7 @@ function AuthProvider({ children }) {
       logout,
       currentUser,
     }),
-    [currentUser]
+    [currentUser, login, logout]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

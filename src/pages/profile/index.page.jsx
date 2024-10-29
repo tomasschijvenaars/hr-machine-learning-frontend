@@ -1,102 +1,77 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 // Core
 import { Grid, Stack, useMediaQuery as muiUseMediaQuery } from "@mui/material";
 import { Button } from "@components";
 import { useTheme } from "@mui/material/styles";
 
+// Utils
+import { setProfileValues } from "./_default_values"
+import { useAuth } from "@hooks";
+
 // Actions
-import { getUser } from "@actions";
-import DefaultLayout from "src/layouts/default.layout";
-import { AppBar } from "src/layouts/app_bar/index";
-import { TextField } from "src/components/field/index";
+import { DefaultLayout } from "@layouts";
+import { TextField } from "@fields";
 
 //Style
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 function ProfileGeneralPage() {
   const theme = useTheme();
-  const router = useRouter();
+
+  const { currentUser, logout } = useAuth();
 
   const { control, formState, handleSubmit, reset } = useForm({
+    defaultValues: setProfileValues(currentUser),
     mode: "onChange",
   });
 
-   const handleSubmitForm = async values => {
-    try {
-      setLoading(true);
-      const { data } = await axios.post("http://localhost:8000/register", values);
-      
-      if (data.success) {
-        const { id } = data;
-
-        console.log(id)
-        
-        router.push(`http://localhost:420/profile/${id}`)
-      }
-      setLoading(false)
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
+  const handleSubmitForm = async (values) => {
+    console.log(values);
   };
 
-  const { slug } = router.query;
-
-  const [profile, setProfile] = useState();
-
-  const isMobile = muiUseMediaQuery(theme.breakpoints.down('md'));
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const user = await getUser(slug);
-
-        return setProfile(user);
-      } catch (error) {
-        console.error('Error loading candidate:', error);
-      }
-    };
-
-    if (slug) getData();
-  }, [slug]);
+  const isMobile = muiUseMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <DefaultLayout>
       <Grid item xs={3} mt={5} mb={5} justifyContent="center" display="flex">
-      
-      <form>
-        <Stack gap={1} display="flex" sx={{ flexDirection: isMobile ? "column" : "row" }}>
-          <TextField
-            control={control}
-            name="Username"
-            label="username"
-          />
-
-          <TextField 
-            control={control}
-            name="Password"
-            label="password"
-            type="password"
-          />
-          
-          <Stack width="max-content" justifyContent="center"  display="flex">
-          <Button
-            color="secondary"
-            variant="contained"
-            disabled={!formState.isValid}
-            loading={formState.isSubmitting}
-            onClick={handleSubmit(handleSubmitForm)}
-            
+        <form>
+          <Stack
+            gap={1}
+            display="flex"
+            sx={{ flexDirection: isMobile ? "column" : "row" }}
           >
-            <EditIcon/>
-          </Button>
-          </Stack>
-        </Stack>
-      
-      </form>
+            <TextField
+              control={control}
+              name="username"
+              label="Username"
+              value={currentUser?.username}
+            />
 
+            <TextField
+              control={control}
+              name="password"
+              label="Password"
+              type="password"
+            />
+
+            <Stack width="max-content" justifyContent="center" display="flex">
+              <Button
+                color="secondary"
+                variant="contained"
+                disabled={!formState.isValid}
+                loading={formState.isSubmitting}
+                onClick={handleSubmit(handleSubmitForm)}
+              >
+                <EditIcon />
+              </Button>
+            </Stack>
+            <Button color="secondary" variant="contained" onClick={logout}>
+              Logout
+            </Button>
+          </Stack>
+        </form>
       </Grid>
     </DefaultLayout>
   );

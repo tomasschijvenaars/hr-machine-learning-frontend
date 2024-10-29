@@ -8,6 +8,9 @@ import { Stack } from "@mui/material";
 import { Button } from "@components";
 import { TextField } from "@fields";
 
+// Utils
+import { PROFILE_PATH } from "@constants/path.const";
+
 function RegisterForm() {
   const router = useRouter();
 
@@ -24,10 +27,12 @@ function RegisterForm() {
       
       if (data.success) {
         const { id } = data;
-
-        console.log(id)
+    
+        if (typeof window !== "undefined") {
+          await sessionStorage.setItem("userId", id);
+        }
         
-        router.push(`http://localhost:420/profile/${id}`)
+        router.push(PROFILE_PATH)
       }
       setLoading(false)
     } catch (error) {
