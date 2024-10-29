@@ -1,6 +1,7 @@
 /* General pages */
 export const HOME_PATH = "/";
 export const LOGIN_PATH = "/login";
+export const REGISTER_PATH = "/register";
 
 /* Management pages */
 export const MANAGEMENT_GENERAL_PATH = "/management/general";
@@ -20,3 +21,6 @@ export const CV_PATH = "/upload/pdf";
 export const PUBLIC_ROUTES = [
   "/login",
 ];
+
+/* Profile pages */
+export const PROFILE_PATH = "/profile";

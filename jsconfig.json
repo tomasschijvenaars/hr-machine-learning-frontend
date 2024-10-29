@@ -6,6 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
+      "@actions": ["./src/actions"],
       "@components": ["./src/components"],
       "@constants": ["./src/utils/constants"],
       "@fields": ["./src/components/field"],
@@ -13,7 +14,7 @@
       "@helpers": ["./src/utils/helpers"],
       "@hooks": ["./src/hooks"],
       "@layouts": ["./src/layouts"],
-      "@themes": ["./src/themes"]
+      "@themes": ["./src/themes"],
     }
   },
   "exclude": ["./node_modules", "./.next"],
