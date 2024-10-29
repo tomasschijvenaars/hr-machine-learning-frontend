@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+// Core
 import { useTheme } from "@mui/material/styles";
-import {AppBar, Avatar, Box , Button, Container, Menu, Typography, IconButton,  Tooltip, MenuItem, Toolbar, } from "@mui/material";
+import { AppBar, Avatar, Box , Button, Container, Menu, Typography, IconButton,  Tooltip, MenuItem, Toolbar } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+
+// Utils
+import { PROFILE_PATH } from "@constants/path.const";
 
 // Style
 import styles from "./app_bar.style";
@@ -12,8 +18,11 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function ResponsiveAppBar() {
   const theme = useTheme();
   const classes = styles(theme);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const router = useRouter();
+
+  const [anchorElNav, setAnchorElNav] = useState();
+  const [anchorElUser, setAnchorElUser] = useState();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -114,11 +123,21 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center', color: 'black' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={() => router.push(PROFILE_PATH)}>
+                <Typography sx={{ textAlign: 'center', color: 'black' }}>Profile</Typography>
+              </MenuItem>
+
+              <MenuItem>
+                <Typography sx={{ textAlign: 'center', color: 'black' }}>Account</Typography>
+              </MenuItem>
+
+              <MenuItem>
+                <Typography sx={{ textAlign: 'center', color: 'black' }}>Dashboard</Typography>
+              </MenuItem>
+
+              <MenuItem>
+                <Typography sx={{ textAlign: 'center', color: 'black' }}>Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
