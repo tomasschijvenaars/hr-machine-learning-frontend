@@ -11,6 +11,7 @@ const nextConfig = {
   pageExtensions: ["page.jsx", "page.js"],
   webpack: config => {
     const webpackConfig = config;
+    webpackConfig.resolve.alias["@actions"] = path.join(__dirname, "./src/actions");
     webpackConfig.resolve.alias["@components"] = path.join(__dirname, "./src/components");
     webpackConfig.resolve.alias["@constants"] = path.join(__dirname, "./src/utils/constants");
     webpackConfig.resolve.alias["@fields"] = path.join(__dirname, "./src/components/field");
