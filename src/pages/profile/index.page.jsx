@@ -13,6 +13,9 @@ import DefaultLayout from "src/layouts/default.layout";
 import { AppBar } from "src/layouts/app_bar/index";
 import { TextField } from "src/components/field/index";
 
+//Style
+import EditIcon from '@mui/icons-material/Edit';
+
 function ProfileGeneralPage() {
   const theme = useTheme();
   const router = useRouter();
@@ -78,9 +81,7 @@ function ProfileGeneralPage() {
             type="password"
           />
           
-        
-        </Stack>
-        <Stack mt={3} width="50%" justifyContent="end" display="flex">
+          <Stack width="max-content" justifyContent="center"  display="flex">
           <Button
             color="secondary"
             variant="contained"
@@ -89,9 +90,11 @@ function ProfileGeneralPage() {
             onClick={handleSubmit(handleSubmitForm)}
             
           >
-            Wijzig gegevens
+            <EditIcon/>
           </Button>
           </Stack>
+        </Stack>
+      
       </form>
 
       </Grid>
