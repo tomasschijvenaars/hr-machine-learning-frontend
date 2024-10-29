@@ -1,9 +1,8 @@
-/* eslint-disable react/no-danger */
 import { Fragment, memo } from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
 
-function BaseLayout({ children }) {
+function BaseLayout({ children, menuContent }) {
   return (
     <Fragment>
       <Head>

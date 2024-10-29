@@ -4,10 +4,17 @@ import React from "react";
 
 // Core
 import { Box, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
 import { Button } from '@components';
+
+// Style
+import styles from "./upload_pdf.field.style";
 
 
 function UploadPdfField(props) {
+  const theme = useTheme();
+  const classes = styles(theme);
+
   const { 
     control, 
     name 
@@ -19,16 +26,7 @@ function UploadPdfField(props) {
       control={control}
       render={({ field: { onChange, onBlur, value } }) => (
         <Box
-          sx={{ // TODO make use of style file
-            border: '2px dashed #1976d2',
-            borderRadius: '8px',
-            padding: '16px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '16px',
-          }}
+          style={classes.box}
         >
           <input
             type="file"

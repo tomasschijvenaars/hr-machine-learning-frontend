@@ -1,24 +1,22 @@
 import { useRouter } from "next/router";
 
 // Core
-import { Box } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Button } from "@components";
 
 // Utils
 import { MANAGEMENT_GENERAL_PATH } from "@constants/path.const";
+import { DefaultLayout } from "@layouts";
+import Headline from "src/modules/headline/headline";
 
 function ManagementGeneralPage() {
   const router = useRouter();
 
   return (
-    <Box>
-      <Button
-        onClick={() => router.push(MANAGEMENT_GENERAL_PATH)}
-        variant="contained"
-      >
-        Navigeer naar management
-      </Button>
-    </Box>
+    <DefaultLayout>
+      <Headline />
+  </DefaultLayout>
+  
   );
 }
 
