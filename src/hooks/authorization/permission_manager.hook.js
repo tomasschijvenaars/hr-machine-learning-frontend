@@ -1,7 +1,7 @@
 import { useAuth } from "../provider.hook";
 
 const usePermissionManager = () => {
-  const { currentUser } = useAuth();
+  const currentUser = useAuth()?.currentUser;
 
   // Checks if the user is a super admin
   const isSuperAdmin = () => {

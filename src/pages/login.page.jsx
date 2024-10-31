@@ -1,8 +1,8 @@
 // Core
 import { Grid } from "@mui/material";
-import { RegisterForm } from "@forms";
+import { LoginForm } from "@forms";
 
-function Register() {
+function LoginPage() {
   return (
     <Grid
       container
@@ -12,11 +12,11 @@ function Register() {
       justifyContent="center"
       sx={{ minHeight: "100vh" }}
     >
-      <Grid item xs={3}>
-        <RegisterForm />
+       <Grid item xs={3}>
+        <LoginForm />
       </Grid>
     </Grid>
   );
 }
 
-export default Register;
+export default LoginPage;
