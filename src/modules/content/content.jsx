@@ -52,7 +52,7 @@ function Content() {
       alignItems="start"
       padding={isMobile ? "20px" : "0 0 0 230px"}
     >
-      <Typography variant="h5" fontWeight="bold" gutterBottom mb={2}>
+      <Typography variant="h5" id="about" fontWeight="bold" gutterBottom mb={2}>
         Hoe het werkt
       </Typography>
       

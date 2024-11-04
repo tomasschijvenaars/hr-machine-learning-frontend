@@ -20,7 +20,7 @@ function ProfileGeneralPage() {
 
           <ProfileForm />
 
-          <Button color="secondary" variant="contained" onClick={logout}>
+          <Button color="primary" variant="contained" onClick={logout}>
             Logout
           </Button>
         </Stack>
