@@ -3,23 +3,30 @@ import { useState } from "react";
 
 // Core
 import { useTheme } from "@mui/material/styles";
-import { AppBar, Avatar, Box , Button, Container, Menu, Typography, IconButton,  Tooltip, MenuItem, Toolbar } from "@mui/material";
+import { AppBar, Avatar, Box , Button, Container, Menu, Typography, IconButton,  Tooltip, MenuItem, Toolbar, useMediaQuery as muiUseMediaQuery } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
 // Utils
-import { PROFILE_PATH } from "@constants/path.const";
+import { PROFILE_PATH, CV_PATH } from "@constants/path.const";
+import { useAuth } from "@hooks";
 
 // Style
 import styles from "./app_bar.style";
 
-const pages = ['Over', 'Tips', 'cv'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const theme = useTheme();
   const classes = styles(theme);
 
   const router = useRouter();
+
+  const navigationPages = [
+    { name: 'Over', path: '/' },
+    { name: 'Tips', path: '/about' },
+    { name: 'CV', path: `/${CV_PATH}` }
+  ];
+
+  const { currentUser, logout } = useAuth();
 
   const [anchorElNav, setAnchorElNav] = useState();
   const [anchorElUser, setAnchorElUser] = useState();
@@ -40,6 +47,8 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const isMobile = muiUseMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <AppBar position="static" style={classes.appBarContainer}>
       <Container maxWidth="xl" style={classes.appBar}>
@@ -50,6 +59,7 @@ function ResponsiveAppBar() {
             component="a"
             href="/"
             style={classes.appBarTitel}
+            display={isMobile ? "none" : "show"}
           >
             HRML
           </Typography>
@@ -81,24 +91,48 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center'}}>{page}</Typography> 
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-    
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+              
+              {navigationPages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }} 
+                key={page.name}
+                onClick={() => router.push(page.path)}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
+            </Menu>
+          </Box>
+
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            HRML
+          </Typography>
+    
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {navigationPages.map((page) => (
+          <Button
+            key={page.name}
+            onClick={() => router.push(page.path)}
+            sx={{ my: 2, color: 'black', display: 'block' }}
+            >
+            {page.name}
+          </Button>
+          ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -135,7 +169,7 @@ function ResponsiveAppBar() {
                 <Typography sx={{ textAlign: 'center', color: 'black' }}>Dashboard</Typography>
               </MenuItem>
 
-              <MenuItem>
+              <MenuItem onClick={logout}>
                 <Typography sx={{ textAlign: 'center', color: 'black' }}>Logout</Typography>
               </MenuItem>
             </Menu>

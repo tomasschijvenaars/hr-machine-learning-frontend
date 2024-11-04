@@ -7,8 +7,8 @@ const styles = theme => ({
       color: theme.palette.secondary.contrastText,
     },
     [theme.breakpoints.down("md")]: {
-      minWidth: 32,
-      minHeight: 32,
+      minWidth: 36,
+      minHeight: 20,
     },
   },
 });
