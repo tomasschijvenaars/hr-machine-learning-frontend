@@ -1,1 +1,1 @@
-export { default as UploadPdfForm } from "./upload_pdf.form";
+export { default as ProfileForm } from "./profile.form";

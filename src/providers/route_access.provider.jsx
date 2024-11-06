@@ -5,20 +5,25 @@ import PropTypes from "prop-types";
 import ErrorPage from "../pages/_error.page";
 
 // Utils
-import { usePermissionManager } from "@hooks";
+import { LOGIN_PATH, REGISTER_PATH  } from "@constants/path.const";
+import { useAuth } from "@hooks";
 
 function RouteAccessProvider({ children }) {
   const { pathname } = useRouter();
 
-  const { isSuperAdmin } = usePermissionManager();
+  const currentUser =  useAuth()?.currentUser;
+
+  // const { isSuperAdmin } = usePermissionManager();
 
   let allowed = true;
 
+  const isPublicPage = [LOGIN_PATH, REGISTER_PATH].includes(pathname);
+
   // Management
   // ---------------------------------
-  if (pathname.startsWith("/management")) {
+  if (!isPublicPage) {
     // Swap these two and navigate to management to test the route access provider
-    const isAllowed = true;
+    const isAllowed = !!currentUser;
     // const isAllowed = isSuperAdmin();
 
     allowed = isAllowed;

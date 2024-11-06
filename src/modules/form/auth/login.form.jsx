@@ -1,7 +1,6 @@
-import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router"
-import axios from "axios";
+import { Fragment } from "react";
 
 // Core
 import { Stack } from "@mui/material";
@@ -9,31 +8,22 @@ import { Button } from "@components";
 import { TextField } from "@fields";
 
 // Utils
+import { useAuth } from "@hooks";
 import { PROFILE_PATH } from "@constants/path.const";
 
-function RegisterForm() {
+function LoginForm() {
   const router = useRouter();
+
+  const { login } = useAuth();
 
   const { control, formState, handleSubmit, reset } = useForm({
     mode: "onChange",
   });
 
   const handleSubmitForm = async values => {
-    try {
-      const { data } = await axios.post("http://localhost:8000/register", values);
-      
-      if (data.success) {
-        const { id } = data;
-    
-        if (typeof window !== "undefined") {
-          await sessionStorage.setItem("userId", id);
-        }
-        
-        router.push(PROFILE_PATH)
-      }
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
+    const { username, password } = values;
+
+    await login(username, password);
   };
 
   return (
@@ -52,22 +42,15 @@ function RegisterForm() {
             label="Password"
             type="password"
           />
-
-          <TextField
-            control={control}
-            name="password_check"
-            label="Password again"
-            type="password"
-          />
           
           <Button
-            color="secondary"
+            color="primary"
             variant="contained"
             disabled={!formState.isValid}
             loading={formState.isSubmitting}
             onClick={handleSubmit(handleSubmitForm)}
           >
-            Register
+            Login
           </Button>
         </Stack>
       </form>
@@ -75,4 +58,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

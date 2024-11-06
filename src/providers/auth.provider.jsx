@@ -1,9 +1,10 @@
 import { createContext, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 // Utils
-import { HOME_PATH, REGISTER_PATH } from "@constants/path.const";
+import { PROFILE_PATH, REGISTER_PATH, LOGIN_PATH } from "@constants/path.const";
 
 // Actions
 import { getUser } from "@actions";
@@ -12,53 +13,79 @@ export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const [user, setUser] = useState();
+  const userId = typeof window !== "undefined" ? sessionStorage.getItem("userId") : null;
+
+  const isPublicPage = [LOGIN_PATH, REGISTER_PATH].includes(router.pathname);
 
   useEffect(() => {
-    const getData = async () => {
-      try {        
-        if (typeof window !== "undefined") {
-          const userId = sessionStorage.getItem("userId");
-
-          const loggedInUser = await getUser(userId);
-
-          return setUser(loggedInUser);
+    if (!isPublicPage) {
+      const getData = async () => {
+        if (userId) {
+          try {
+            const loggedInUser = await getUser(userId);
+            setUser(loggedInUser);
+          } catch (error) {
+            console.error("Error loading user:", error);
+          }
         }
-      } catch (error) {
-        console.error('Error loading candidate:', error);
-      }
-    };
+        setLoading(false); // Ensure loading state is set to false
+      };
 
-    getData();
-  }, []);
-
-  const currentUser = user;
+      getData();
+    } else {
+      setLoading(false); // Immediately end loading on the login page
+    }
+  }, [isPublicPage, userId, router]);
 
   const logout = async () => {
     try {
-      await router.replace(REGISTER_PATH);
+      await router.replace(LOGIN_PATH);
     } finally {
       sessionStorage.clear();
+      setUser(null); // Reset user to null on logout
     }
   };
 
-  const login = async (email, password) => {
-    console.log(email, password);
-    await router.replace(HOME_PATH);
-    return null;
+  const login = async (username, password) => {
+    try {
+      const { data } = await axios.post("http://localhost:8000/login", { username, password });
+        
+      if (!data.success) return null;
+
+      const { _id } = data;
+
+      console.log(_id);
+
+      if (typeof window !== "undefined") {
+        console.log("fwefw")
+        await sessionStorage.setItem("userId", _id);
+      }
+
+      await router.replace(PROFILE_PATH);
+    } catch(error) {
+      console.error("login error", error)
+    }
   };
 
   const value = useMemo(
     () => ({
       login,
       logout,
-      currentUser,
+      currentUser: user,
     }),
-    [currentUser, login, logout]
+    [user]
   );
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  if (loading) return;
+
+  return isPublicPage ? (
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider> // Render children directly if on login page
+  ) : (
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  );
 }
 
 AuthProvider.propTypes = {

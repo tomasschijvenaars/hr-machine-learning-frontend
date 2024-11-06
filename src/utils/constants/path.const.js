@@ -1,26 +1,20 @@
 /* General pages */
-export const HOME_PATH = "/";
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
 
-/* Management pages */
-export const MANAGEMENT_GENERAL_PATH = "/management/general";
+/* Anchors */
+export const HOME_PATH = "/#home";
+export const ABOUT_PATH = "#about";
+export const TIPS_PATH = "#tips";
 
-/* Dashboard */
-export const DASHBOARD_PATH = "/dashboard";
+export const PROFILE_PATH = "/profile";
+export const ADMIN_PATH = "/admin"
 
 //-------------------------------------------------------------
 // Public Routes
 //-------------------------------------------------------------
-
-
-/* CV page */
-export const CV_PATH = "/upload/pdf";
-
-/* Public routes / pages */
 export const PUBLIC_ROUTES = [
-  "/login",
+  HOME_PATH,
+  LOGIN_PATH,
+  REGISTER_PATH
 ];
-
-/* Profile pages */
-export const PROFILE_PATH = "/profile";

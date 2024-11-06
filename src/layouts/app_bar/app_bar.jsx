@@ -3,28 +3,34 @@ import { useState } from "react";
 
 // Core
 import { useTheme } from "@mui/material/styles";
-import { AppBar, Avatar, Box , Button, Container, Menu, Typography, IconButton,  Tooltip, MenuItem, Toolbar, useMediaQuery as muiUseMediaQuery } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Menu,
+  Typography,
+  IconButton,
+  Tooltip,
+  MenuItem,
+  Toolbar,
+  useMediaQuery as muiUseMediaQuery,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 // Utils
-import { PROFILE_PATH, CV_PATH } from "@constants/path.const";
+import { PROFILE_PATH, ABOUT_PATH, TIPS_PATH } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 // Style
 import styles from "./app_bar.style";
-
 
 function ResponsiveAppBar() {
   const theme = useTheme();
   const classes = styles(theme);
 
   const router = useRouter();
-
-  const navigationPages = [
-    { name: 'Over', path: '/' },
-    { name: 'Tips', path: '/about' },
-    { name: 'CV', path: `/${CV_PATH}` }
-  ];
 
   const { currentUser, logout } = useAuth();
 
@@ -34,7 +40,7 @@ function ResponsiveAppBar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -47,7 +53,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  const isMobile = muiUseMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = muiUseMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <AppBar position="static" style={classes.appBarContainer}>
@@ -58,13 +64,13 @@ function ResponsiveAppBar() {
             noWrap
             component="a"
             href="/"
-            style={classes.appBarTitel}
+            style={classes.appBarTitle}
             display={isMobile ? "none" : "show"}
           >
             HRML
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -75,32 +81,36 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={{ display: { xs: "block", md: "none" } }}
             >
-              
-              {navigationPages.map((page) => (
-              <Button
-                key={page.name}
-                onClick={() => router.push(page.path)}
-                sx={{ my: 2, color: 'black', display: 'block' }}
-              >
-                {page.name}
-              </Button>
-            ))}
+                <Button
+                  onClick={() => router.push(ABOUT_PATH)}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
+                  Over
+                </Button>
+
+                <Button
+                  onClick={() => router.push(TIPS_PATH)}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
+                  Tips
+                </Button>
             </Menu>
           </Box>
 
@@ -111,28 +121,32 @@ function ResponsiveAppBar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             HRML
           </Typography>
-    
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {navigationPages.map((page) => (
-          <Button
-            key={page.name}
-            onClick={() => router.push(page.path)}
-            sx={{ my: 2, color: 'black', display: 'block' }}
-            >
-            {page.name}
-          </Button>
-          ))}
+
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Button
+                onClick={() => router.push(ABOUT_PATH)}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                About
+              </Button>
+
+              <Button
+                onClick={() => router.push(TIPS_PATH)}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                Tips
+              </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -142,35 +156,43 @@ function ResponsiveAppBar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={() => router.push(PROFILE_PATH)}>
-                <Typography sx={{ textAlign: 'center', color: 'black' }}>Profile</Typography>
+                <Typography sx={{ textAlign: "center", color: "black" }}>
+                  Profile
+                </Typography>
               </MenuItem>
 
               <MenuItem>
-                <Typography sx={{ textAlign: 'center', color: 'black' }}>Account</Typography>
+                <Typography sx={{ textAlign: "center", color: "black" }}>
+                  Account
+                </Typography>
               </MenuItem>
 
               <MenuItem>
-                <Typography sx={{ textAlign: 'center', color: 'black' }}>Dashboard</Typography>
+                <Typography sx={{ textAlign: "center", color: "black" }}>
+                  Dashboard
+                </Typography>
               </MenuItem>
 
               <MenuItem onClick={logout}>
-                <Typography sx={{ textAlign: 'center', color: 'black' }}>Logout</Typography>
+                <Typography sx={{ textAlign: "center", color: "black" }}>
+                  Logout
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>

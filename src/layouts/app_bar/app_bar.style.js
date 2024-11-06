@@ -35,7 +35,7 @@ const styles = theme => ({
         width: "100%",
       },
     },
-    appBarTitel: {
+    appBarTitle: {
       mr: 2,
       display: { xs: 'none', md: 'flex' },
       fontFamily: 'monospace',

@@ -1,9 +1,10 @@
 // Upload
 export {
-  UploadPdfForm
+  ProfileForm
  } from "./upload";
 
 // Register
 export {
-  RegisterForm
+  RegisterForm,
+  LoginForm
  } from "./auth";

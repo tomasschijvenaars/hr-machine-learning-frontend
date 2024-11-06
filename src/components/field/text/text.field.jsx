@@ -13,7 +13,8 @@ function TextField(props) {
     placeholder = "",
     type = "text",
     fullWidth = true, 
-    required = false 
+    required = false,
+    ...rest
   } = props;
 
   return (
@@ -22,6 +23,7 @@ function TextField(props) {
       control={control}
       render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
         <MuiTextField
+          {...rest}
           label={label}
           type={type}
           placeholder={placeholder}
