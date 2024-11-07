@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 import axios from "axios";
 
@@ -12,6 +13,7 @@ import { profileValidation } from "./_validation";
 import { useAuth } from "@hooks";
 
 function ProfileForm() {
+  const router = useRouter();
   const { currentUser } = useAuth();
 
   const { control, formState, handleSubmit, reset } = useForm({
@@ -38,7 +40,7 @@ function ProfileForm() {
 
       console.log(response.data);
 
-      reset();
+      if (response.data?.success) router.reload();
     } catch (error) {
       console.error("Error uploading file:", error);
     }

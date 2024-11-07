@@ -14,6 +14,7 @@
       "@helpers": ["./src/utils/helpers"],
       "@hooks": ["./src/hooks"],
       "@layouts": ["./src/layouts"],
+      "@modules": ["./src/modules"],
       "@themes": ["./src/themes"],
     }
   },

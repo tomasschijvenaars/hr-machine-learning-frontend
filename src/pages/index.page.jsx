@@ -1,14 +1,11 @@
 import { useRouter } from "next/router";
 
 // Core
-import { Box, Grid, Stack, Typography } from "@mui/material";
-import { Button } from "@components";
+import { Grid } from "@mui/material";
 
 // Utils
-import { MANAGEMENT_GENERAL_PATH } from "@constants/path.const";
 import { DefaultLayout } from "@layouts";
-import Headline from "src/modules/headline/headline";
-import Content from "src/modules/content/content";
+import { Headline, Content } from "@modules";
 
 function ManagementGeneralPage() {
   const router = useRouter();
@@ -16,16 +13,15 @@ function ManagementGeneralPage() {
   return (
     <DefaultLayout>
       <Grid flexDirection="column" display="flex" width="100vw">
-        <Grid >  
+        <Grid>
           <Headline />
         </Grid>
 
-        <Grid flexDirection="row" display="flex" mb={5}>  
-          <Content/>
+        <Grid flexDirection="row" display="flex" mb={5}>
+          <Content />
         </Grid>
       </Grid>
-  </DefaultLayout>
-  
+    </DefaultLayout>
   );
 }
 

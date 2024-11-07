@@ -19,6 +19,7 @@ const nextConfig = {
     webpackConfig.resolve.alias["@helpers"] = path.join(__dirname, "./src/utils/helpers");
     webpackConfig.resolve.alias["@hooks"] = path.join(__dirname, "./src/hooks");
     webpackConfig.resolve.alias["@layouts"] = path.join(__dirname, "./src/layouts");
+    webpackConfig.resolve.alias["@modules"] = path.join(__dirname, "./src/modules");
     webpackConfig.resolve.alias["@themes"] = path.join(__dirname, "./src/themes");
     return webpackConfig;
   },

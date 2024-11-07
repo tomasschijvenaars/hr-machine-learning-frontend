@@ -1,1 +1,1 @@
-export { default as headline } from "./headline";
+export { default as Headline } from "./headline";

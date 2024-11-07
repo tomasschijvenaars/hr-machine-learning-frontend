@@ -98,19 +98,19 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-                <Button
-                  onClick={() => router.push(ABOUT_PATH)}
-                  sx={{ my: 2, color: "black", display: "block" }}
-                >
-                  Over
-                </Button>
+              <Button
+                onClick={() => router.push(ABOUT_PATH)}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                Over
+              </Button>
 
-                <Button
-                  onClick={() => router.push(TIPS_PATH)}
-                  sx={{ my: 2, color: "black", display: "block" }}
-                >
-                  Tips
-                </Button>
+              <Button
+                onClick={() => router.push(TIPS_PATH)}
+                sx={{ my: 2, color: "black", display: "block" }}
+              >
+                Tips
+              </Button>
             </Menu>
           </Box>
 
@@ -134,68 +134,79 @@ function ResponsiveAppBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              <Button
-                onClick={() => router.push("#about")}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                About
-              </Button>
-
-              <Button
-                onClick={() => router.push("#tips")}
-                sx={{ my: 2, color: "black", display: "block" }}
-              >
-                Tips
-              </Button>
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+            <Button
+              onClick={() => router.push("/#about")}
+              sx={{ my: 2, color: "black", display: "block" }}
             >
-              <MenuItem onClick={() => router.push(PROFILE_PATH)}>
-                <Typography sx={{ textAlign: "center", color: "black" }}>
-                  Profile
-                </Typography>
-              </MenuItem>
+              About
+            </Button>
 
-              <MenuItem>
-                <Typography sx={{ textAlign: "center", color: "black" }}>
-                  Account
-                </Typography>
-              </MenuItem>
-
-              <MenuItem>
-                <Typography sx={{ textAlign: "center", color: "black" }}>
-                  Dashboard
-                </Typography>
-              </MenuItem>
-
-              <MenuItem onClick={logout}>
-                <Typography sx={{ textAlign: "center", color: "black" }}>
-                  Logout
-                </Typography>
-              </MenuItem>
-            </Menu>
+            <Button
+              onClick={() => router.push("/#tips")}
+              sx={{ my: 2, color: "black", display: "block" }}
+            >
+              Tips
+            </Button>
           </Box>
+
+          {currentUser?._id ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={() => router.push(PROFILE_PATH)}>
+                  <Typography sx={{ textAlign: "center", color: "black" }}>
+                    Profile
+                  </Typography>
+                </MenuItem>
+
+                <MenuItem>
+                  <Typography sx={{ textAlign: "center", color: "black" }}>
+                    Account
+                  </Typography>
+                </MenuItem>
+
+                <MenuItem>
+                  <Typography sx={{ textAlign: "center", color: "black" }}>
+                    Dashboard
+                  </Typography>
+                </MenuItem>
+
+                <MenuItem onClick={logout}>
+                  <Typography sx={{ textAlign: "center", color: "black" }}>
+                    Logout
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          ) : (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
