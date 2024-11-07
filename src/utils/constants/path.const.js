@@ -1,11 +1,7 @@
 /* General pages */
+export const HOME_PATH = "/";
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
-
-/* Anchors */
-export const HOME_PATH = "/#home";
-export const ABOUT_PATH = "#about";
-export const TIPS_PATH = "#tips";
 
 export const PROFILE_PATH = "/profile";
 export const ADMIN_PATH = "/admin"

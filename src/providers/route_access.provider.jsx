@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import ErrorPage from "../pages/_error.page";
 
 // Utils
-import { LOGIN_PATH, REGISTER_PATH  } from "@constants/path.const";
+import { PUBLIC_ROUTES  } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 function RouteAccessProvider({ children }) {
@@ -17,8 +17,8 @@ function RouteAccessProvider({ children }) {
 
   let allowed = true;
 
-  const isPublicPage = [LOGIN_PATH, REGISTER_PATH].includes(pathname);
-
+  const isPublicPage = PUBLIC_ROUTES.includes(pathname);
+  
   // Management
   // ---------------------------------
   if (!isPublicPage) {

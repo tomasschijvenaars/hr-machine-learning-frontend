@@ -135,14 +135,14 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
-                onClick={() => router.push(ABOUT_PATH)}
+                onClick={() => router.push("#about")}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
                 About
               </Button>
 
               <Button
-                onClick={() => router.push(TIPS_PATH)}
+                onClick={() => router.push("#tips")}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
                 Tips
