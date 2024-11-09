@@ -7,7 +7,7 @@ import { Grid, Stack, Typography, useMediaQuery as muiUseMediaQuery } from "@mui
 import { useTheme } from "@mui/material/styles";
 
 // Utils
-import { CV_PATH } from "@constants/path.const";
+import { PROFILE_PATH, LOGIN_PATH } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 // Style
@@ -24,11 +24,10 @@ function Headline() {
   const isMobile = muiUseMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    
-    <Grid 
-      container 
-      justifyContent="center" 
-      alignItems="center" 
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
       style={{ backgroundColor: '#CDCDCD', height: '81.7vh', width: '100%' }}
     >
       <Grid item sm={12} md={7} style={{ textAlign: 'center' }}>
@@ -44,7 +43,10 @@ function Headline() {
           </Typography>
           <Button 
             style={classes.headlineButton} 
-            onClick={() => router.push(CV_PATH)}
+            onClick={() => {
+              if (currentUser) return router.push(PROFILE_PATH)
+              return router.push(LOGIN_PATH)
+            }}
           >
             Stuur je cv!
           </Button>

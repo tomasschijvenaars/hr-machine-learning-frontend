@@ -12,3 +12,8 @@ export {
 export {
   Persona
 } from "./persona";
+
+// Job
+export {
+  Job
+} from "./job";
