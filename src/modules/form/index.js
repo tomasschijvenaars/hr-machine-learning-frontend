@@ -1,10 +1,15 @@
-// Upload
-export {
-  ProfileForm
- } from "./upload";
-
-// Register
-export {
+// Auth
+export { 
   RegisterForm,
   LoginForm
- } from "./auth";
+} from "./auth";
+
+// Profile
+export { 
+  ProfileForm
+} from "./profile";
+
+// Management
+export { 
+  JobForm
+} from "./management";

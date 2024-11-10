@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Container,
+  Divider,
   Menu,
   Typography,
   IconButton,
@@ -20,7 +21,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 // Utils
-import { PROFILE_PATH, ABOUT_PATH, TIPS_PATH } from "@constants/path.const";
+import { PROFILE_PATH, ABOUT_PATH, TIPS_PATH, JOBS_PATH } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 // Style
@@ -179,17 +180,19 @@ function ResponsiveAppBar() {
                   </Typography>
                 </MenuItem>
 
-                <MenuItem>
-                  <Typography sx={{ textAlign: "center", color: "black" }}>
-                    Account
-                  </Typography>
-                </MenuItem>
+                {currentUser.is_super_admin && (
+                  <>
+                    <Divider />
 
-                <MenuItem>
-                  <Typography sx={{ textAlign: "center", color: "black" }}>
-                    Dashboard
-                  </Typography>
-                </MenuItem>
+                    <MenuItem onClick={() => router.push(JOBS_PATH)}>
+                      <Typography sx={{ textAlign: "center", color: "black" }}>
+                        Jobs
+                      </Typography>
+                    </MenuItem>
+                  </>
+                )}
+
+                <Divider />
 
                 <MenuItem onClick={logout}>
                   <Typography sx={{ textAlign: "center", color: "black" }}>

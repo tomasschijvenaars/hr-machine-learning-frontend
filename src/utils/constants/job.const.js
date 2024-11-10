@@ -1,0 +1,140 @@
+/* Possible Job Skills */
+export const PROGRAMMING_LANGUAGES = {
+  php: "php",
+  javascript: "javascript",
+  python: "python",
+  java: "java",
+  csharp: "csharp",
+  cplusplus: "cplusplus",
+  ruby: "ruby",
+  typescript: "typescript",
+  go: "go",
+  swift: "swift",
+  kotlin: "kotlin",
+  rust: "rust",
+  r: "r",
+  matlab: "matlab",
+  perl: "perl",
+  scala: "scala",
+  bash: "bash",
+  dart: "dart",
+  sql: "sql",
+};
+
+export const FRAMEWORKS_LIBRARIES = {
+  react: "react",
+  angular: "angular",
+  vue: "vue",
+  svelte: "svelte",
+  django: "django",
+  flask: "flask",
+  laravel: "laravel",
+  express: "express",
+  spring: "spring",
+  ruby_on_rails: "ruby_on_rails",
+  asp_net: "asp_net",
+  nodejs: "nodejs",
+  nextjs: "nextjs",
+  nuxtjs: "nuxtjs",
+  redux: "redux",
+  jquery: "jquery",
+};
+
+export const DATABASES = {
+  mysql: "mysql",
+  postgresql: "postgresql",
+  mongodb: "mongodb",
+  oracle: "oracle",
+  firebase: "firebase",
+  cassandra: "cassandra",
+  sqlite: "sqlite",
+  mariadb: "mariadb",
+  redis: "redis",
+  elasticsearch: "elasticsearch",
+  dynamodb: "dynamodb",
+};
+
+export const DEVOPS_TOOLS = {
+  docker: "docker",
+  kubernetes: "kubernetes",
+  ansible: "ansible",
+  jenkins: "jenkins",
+  terraform: "terraform",
+  aws: "aws",
+  azure: "azure",
+  gcp: "gcp",
+  git: "git",
+  ci_cd: "ci_cd",
+  vagrant: "vagrant",
+  puppet: "puppet",
+  chef: "chef",
+};
+
+export const CLOUD_TECHNOLOGIES = {
+  aws: "aws",
+  azure: "azure",
+  gcp: "gcp",
+  heroku: "heroku",
+  digitalocean: "digitalocean",
+  cloudflare: "cloudflare",
+  firebase: "firebase",
+  netlify: "netlify",
+  salesforce: "salesforce",
+};
+
+export const DATA_SCIENCE_MACHINE_LEARNING = {
+  pandas: "pandas",
+  numpy: "numpy",
+  scipy: "scipy",
+  scikit_learn: "scikit_learn",
+  tensorflow: "tensorflow",
+  keras: "keras",
+  pytorch: "pytorch",
+  tableau: "tableau",
+  power_bi: "power_bi",
+  excel: "excel",
+  hadoop: "hadoop",
+  spark: "spark",
+  hive: "hive",
+  data_visualization: "data_visualization",
+};
+
+export const SOFTWARE_DEVELOPMENT_TOOLS = {
+  git: "git",
+  jira: "jira",
+  confluence: "confluence",
+  vscode: "vscode",
+  intellij: "intellij",
+  eclipse: "eclipse",
+  android_studio: "android_studio",
+  xcode: "xcode",
+  visual_studio: "visual_studio",
+  postman: "postman",
+  figma: "figma",
+  sketch: "sketch",
+  zeplin: "zeplin",
+};
+
+export const SOFT_SKILLS = {
+  communication: "communication",
+  teamwork: "teamwork",
+  problem_solving: "problem_solving",
+  critical_thinking: "critical_thinking",
+  adaptability: "adaptability",
+  leadership: "leadership",
+  time_management: "time_management",
+  creativity: "creativity",
+  attention_to_detail: "attention_to_detail",
+  project_management: "project_management",
+};
+
+export const JOB_SKILLS = {
+  ...PROGRAMMING_LANGUAGES,
+  ...FRAMEWORKS_LIBRARIES,
+  ...DATABASES,
+  ...DEVOPS_TOOLS,
+  ...CLOUD_TECHNOLOGIES,
+  ...DATA_SCIENCE_MACHINE_LEARNING,
+  ...SOFTWARE_DEVELOPMENT_TOOLS,
+  ...SOFT_SKILLS,
+};

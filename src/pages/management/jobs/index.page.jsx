@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 // Core
 import { Grid, Box } from "@mui/material";
+import { Button } from "@components";
 
 // Utils
-import { JOB_PATH } from "@constants/path.const"
+import { JOB_PATH, CREATE_JOB_PATH } from "@constants/path.const"
 import { DefaultLayout } from "@layouts";
 import { Job } from "@modules";
 
@@ -33,7 +34,9 @@ function ManagementJobsPage() {
   return (
     <DefaultLayout>
       <Box m={2}>
-        <Grid container spacing={2}>
+        <Button onClick={() => router.push(CREATE_JOB_PATH)}>Create</Button>
+
+        <Grid container spacing={2} mt={2}>
           {jobs?.map((job) => (
             <Grid key={job._id} item xs={12} md={4} direction="column">
               <Job job={job} onClick={() => router.push(JOB_PATH(job._id))} />

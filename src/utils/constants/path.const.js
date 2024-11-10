@@ -9,6 +9,7 @@ export const ADMIN_PATH = "/admin"
 /* Management pages */
 export const JOBS_PATH = "/management/jobs/";
 export const JOB_PATH = id => `/management/jobs/${id}`;
+export const CREATE_JOB_PATH = "/management/jobs/create";
 
 //-------------------------------------------------------------
 // Public Routes
