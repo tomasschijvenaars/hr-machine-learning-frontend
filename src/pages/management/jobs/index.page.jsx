@@ -52,7 +52,7 @@ function ManagementJobsPage() {
             }}
             variant="contained" 
             onClick={() => router.push(CREATE_JOB_PATH)}>
-            Create
+            Create Job
           </Button>
         )}
       </Box>
@@ -61,13 +61,11 @@ function ManagementJobsPage() {
         mt={2}
         direction={isDesktop ? "row" : "column"}
         spacing={4}
-       
         maxWidth={1480}
         mx="auto"
         justifyContent="center"
       >
         <Stack
-          
           spacing={2}
           maxWidth={isDesktop ? "400px" : "100%"}
           width={isDesktop ? "250px" : "100%"}
@@ -76,6 +74,7 @@ function ManagementJobsPage() {
         >
           {jobs.map((job) => (
             <Paper
+            style={{ marginRight: "10px" }}
               key={job.id}
               elevation={2}
               onClick={() => setSelectedJob(job)}
@@ -84,6 +83,7 @@ function ManagementJobsPage() {
                 cursor: "pointer",
                 bgcolor: "white",
                 border: "1px solid transparent",
+                marginRight: "20px"
               }}
             >
               <Typography variant="h6" fontWeight="bold">
