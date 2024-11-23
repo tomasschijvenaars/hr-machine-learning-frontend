@@ -32,11 +32,10 @@ function JobView({ job, onClick }) {
           width={{ xs: "100%", md: "400px" }}
           minHeight={{ xs: "400px", md: "700px" }}
           maxHeight={{ xs: "500px", md: "700px" }}
-          bgcolor="grey.100"
           p={3}
           borderRadius={2}
-        >
-          <Stack direction="row" spacing={2} alignItems="center">
+        > 
+          <Stack style={classes.header_job} direction="row" spacing={2} alignItems="center">
             <Avatar
               // src={selectedJobDetails.imageUrl}
               // alt={selectedJobDetails.company}
