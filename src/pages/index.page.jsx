@@ -4,11 +4,19 @@ import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
 
 // Utils
-import { DefaultLayout } from "@layouts";
+import { LOGIN_PATH } from "@constants/path.const";
 import { Headline, Content } from "@modules";
+import { DefaultLayout } from "@layouts";
+import { useAuth } from "@hooks";
 
 function ManagementGeneralPage() {
   const router = useRouter();
+  const { currentUser } = useAuth();
+
+  if (!currentUser) {
+    router.push(LOGIN_PATH);
+    return null;
+  }
 
   return (
     <DefaultLayout>
