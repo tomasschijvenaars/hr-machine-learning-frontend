@@ -35,7 +35,8 @@ function ManagementJobPage() {
 
   return (
     <DefaultLayout>
-      <Box m={20}>
+       <Grid flexDirection="column" display="flex" width="1500px">
+      <Box mt={5}>
         <Button onClick={() => router.push(JOBS_PATH)}>Back</Button>
 
         <Box mt={2} mb={4}>
@@ -108,6 +109,7 @@ function ManagementJobPage() {
         )}
         </Grid>
       </Box>
+      </Grid>
     </DefaultLayout>
   );
 }

@@ -57,7 +57,7 @@ function ResponsiveAppBar() {
   const isMobile = muiUseMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AppBar position="static" style={classes.appBarContainer}>
+    <AppBar position="fixed" style={classes.appBarContainer}>
       <Container maxWidth="xl" style={classes.appBar}>
         <Toolbar disableGutters>
           <Typography
@@ -71,6 +71,7 @@ function ResponsiveAppBar() {
             HRML
           </Typography>
 
+          {/* Mobile Menu Icon */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -115,6 +116,7 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
 
+          {/* Desktop Menu */}
           <Typography
             variant="h5"
             noWrap
@@ -136,10 +138,10 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
-              onClick={() => router.push("/#about")}
+              onClick={() => router.push(JOBS_PATH)}
               sx={{ my: 2, color: "black", display: "block" }}
             >
-              About
+              Vacatures
             </Button>
 
             <Button
@@ -150,62 +152,63 @@ function ResponsiveAppBar() {
             </Button>
           </Box>
 
-          {currentUser?._id ? (
-            <Box sx={{ flexGrow: 0 }}>
+          {/* User Avatar or Login */}
+          <Box sx={{ flexGrow: 0 }}>
+            {currentUser?._id ? (
+              <>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem onClick={() => router.push(PROFILE_PATH)}>
+                    <Typography sx={{ textAlign: "center", color: "black" }}>
+                      Profile
+                    </Typography>
+                  </MenuItem>
+
+                  <Divider />
+
+                  <MenuItem onClick={() => router.push(JOBS_PATH)}>
+                    <Typography sx={{ textAlign: "center", color: "black" }}>
+                      Vacatures
+                    </Typography>
+                  </MenuItem>
+
+                  <Divider />
+
+                  <MenuItem onClick={logout}>
+                    <Typography sx={{ textAlign: "center", color: "black" }}>
+                      Logout
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </>
+            ) : (
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Gebruiker" src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
-              
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={() => router.push(PROFILE_PATH)}>
-                  <Typography sx={{ textAlign: "center", color: "black" }}>
-                    Profile
-                  </Typography>
-                </MenuItem>
-
-                <Divider />
-
-                <MenuItem onClick={() => router.push(JOBS_PATH)}>
-                  <Typography sx={{ textAlign: "center", color: "black" }}>
-                    Jobs
-                  </Typography>
-                </MenuItem>
-
-                <Divider />
-
-                <MenuItem onClick={logout}>
-                  <Typography sx={{ textAlign: "center", color: "black" }}>
-                    Logout
-                  </Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
-          ) : (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-            </Box>
-          )}
+            )}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

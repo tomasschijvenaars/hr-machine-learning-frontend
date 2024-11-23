@@ -26,9 +26,7 @@ function DefaultLayout({ children }) {
       </Head>
 
       <Stack flexDirection= "column">
-        {/* {(!displayBaseLayout) && ( */}
-          <AppBar />
-        {/* )} */}
+        <AppBar />
         <Main>
           {children}
         </Main>

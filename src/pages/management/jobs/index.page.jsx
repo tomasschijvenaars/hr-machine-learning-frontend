@@ -36,6 +36,7 @@ function ManagementJobsPage() {
 
   return (
     <DefaultLayout>
+      <Grid flexDirection="column" display="flex" width="1500px">
       <Box m={2}>
       {currentUser.is_super_admin && (
         <Button onClick={() => router.push(CREATE_JOB_PATH)}>Create</Button>
@@ -49,6 +50,7 @@ function ManagementJobsPage() {
           ))}
         </Grid>
       </Box>
+      </Grid>
     </DefaultLayout>
   );
 }
