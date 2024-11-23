@@ -1,16 +1,21 @@
+import { useRouter } from "next/router";
 
 // Core
 import { Box, Typography, Stack, Paper, Divider, Avatar, useMediaQuery } from "@mui/material";
+import { Button } from "@components";
+
+// Utils
+import {JOB_PATH} from "@constants/path.const";
 
 // Style
 import { useTheme } from "@mui/material/styles";
 import styles from "./jobview.style";
 import PaidIcon from "@mui/icons-material/Paid";
 
-function JobView({ job }) {
+function JobView({ job, onClick }) {
   const theme = useTheme();
   const classes = styles(theme);
-  
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -20,7 +25,7 @@ function JobView({ job }) {
       maxWidth={1480}
       mx={isMobile ? "20px" : "auto"}
       justifyContent="center"
-      marginLeft="75px"
+      marginLeft={isMobile ? "" : "75px"}
     >
         <Box
           style={classes.jobs}
@@ -62,11 +67,24 @@ function JobView({ job }) {
               <Typography  component="li" variant="body2">
                 Skills: {job.skills.join(", ")}
               </Typography>
-          
-
-          <Box component="ul" pl={2}>
-            
           </Box>
+
+          <Button
+              variant="contained"
+              color="primary"
+   
+              onClick={() => router.push(JOB_PATH(job._id))}
+              sx={{
+                mt: 3,
+                backgroundColor: '#72BEAE',
+                ":hover": { backgroundColor: 'black' },
+                fontWeight: "bold",
+                textTransform: "none",
+              }}
+            >
+              View Job
+            </Button>
+          
         </Box>
     </Stack>
   );
