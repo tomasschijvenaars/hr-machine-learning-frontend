@@ -25,7 +25,7 @@ function JobView({ job, onClick }) {
       maxWidth={1480}
      
       justifyContent="center"
-      marginLeft={isMobile ? "" : "75px"}
+      marginLeft={isMobile ? "" : "60px"}
     >
         <Box
           style={classes.jobs}
