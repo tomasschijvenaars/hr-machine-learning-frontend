@@ -50,7 +50,7 @@ function Job({ job, onClick }) {
               <>
                 <Divider />
                 <Typography variant="body2" sx={{ color: "textSecondary", mt: 1 }}>
-                  <strong>Required Skills:</strong> {job.skills.join(", ")}
+                  <strong>Required Skills:</strong>   
                 </Typography>
               </>
             )}
