@@ -67,6 +67,9 @@ function CVTable({ jobId, users = [] }) {
                 <TableCell>{user.goodEnough ? "Yes" : "No"}</TableCell>
                 <TableCell>
                   <Button
+                    sx={{
+                      backgroundColor: '#72BEAE',
+                    }}
                     variant="contained"
                     color="secondary"
                     onClick={() => handleSelect(user.id)}
