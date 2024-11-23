@@ -23,7 +23,7 @@ function JobView({ job, onClick }) {
       direction={isMobile ? "column" : "row"}
       spacing={4}
       maxWidth={1480}
-      mx={isMobile ? "20px" : "auto"}
+     
       justifyContent="center"
       marginLeft={isMobile ? "" : "75px"}
     >

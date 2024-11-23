@@ -39,10 +39,10 @@ function ManagementJobsPage() {
   }, []);
 
   return (
-    <DefaultLayout m={20}>
+    <DefaultLayout>
       {/* Knop bovenaan */}
       <Stack
-       p={3}
+      p={3}
       direction={"column"}
       >
      <Box pt={4} textAlign="left">
@@ -58,6 +58,7 @@ function ManagementJobsPage() {
       </Box>
   
       <Stack
+        mt={2}
         direction={isDesktop ? "row" : "column"}
         spacing={4}
        
@@ -66,10 +67,11 @@ function ManagementJobsPage() {
         justifyContent="center"
       >
         <Stack
+          
           spacing={2}
           maxWidth={isDesktop ? "400px" : "100%"}
           width={isDesktop ? "250px" : "100%"}
-          height={isDesktop ? "700px" : "auto"}
+          height={isDesktop ? "700px" : "300px"}
           overflow="auto"
         >
           {jobs.map((job) => (
