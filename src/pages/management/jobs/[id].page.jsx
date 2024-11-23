@@ -6,8 +6,9 @@ import { Box, Grid, Typography, Chip } from "@mui/material";
 import { Button } from "@components";
 
 // Utils
+import { JOBS_PATH, CV_PATH  } from "@constants/path.const";
 import { DefaultLayout } from "@layouts";
-import { JOBS_PATH  } from "@constants/path.const";
+import { useAuth } from "@hooks";
 
 // Actions
 import { getJob } from "@actions";
@@ -15,6 +16,7 @@ import { getJob } from "@actions";
 function ManagementJobPage() {
   const router = useRouter();
   const { id } = router.query;
+  const { currentUser } = useAuth();
 
   const [job, setJob] = useState();
 
@@ -84,16 +86,26 @@ function ManagementJobPage() {
             </Typography>
           </Grid>
 
-          {/* Apply Button
+          {currentUser.is_super_admin ? (
           <Grid item xs={12} mt={4}>
             <Button
+             sx={{
+              backgroundColor: '#72BEAE',
+              }}
+              onClick={() => router.push(CV_PATH)}
               variant="contained"
               color="primary"
-              onClick={handleApplyClick}
             >
-              Apply Now
+              Assign candidates
             </Button>
-          </Grid> */}
+          </Grid>
+          ):(
+          <Grid item xs={12} mt={4}>
+            <Typography variant="body1" color="textSecondary">
+              CV Score
+            </Typography>
+          </Grid>
+        )}
         </Grid>
       </Box>
     </DefaultLayout>
