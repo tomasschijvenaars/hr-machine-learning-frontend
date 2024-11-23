@@ -8,6 +8,7 @@ import { Button } from "@components";
 // Utils
 import { JOB_PATH, CREATE_JOB_PATH } from "@constants/path.const"
 import { DefaultLayout } from "@layouts";
+import { useAuth } from "@hooks";
 import { Job } from "@modules";
 
 // Actions
@@ -15,6 +16,8 @@ import { getJobs } from "@actions";
 
 function ManagementJobsPage() {
   const router = useRouter();
+
+  const { currentUser } = useAuth();
 
   const [jobs, setJobs] = useState();
 
@@ -34,7 +37,9 @@ function ManagementJobsPage() {
   return (
     <DefaultLayout>
       <Box m={2}>
+      {currentUser.is_super_admin && (
         <Button onClick={() => router.push(CREATE_JOB_PATH)}>Create</Button>
+      )}
 
         <Grid container spacing={2} mt={2}>
           {jobs?.map((job) => (

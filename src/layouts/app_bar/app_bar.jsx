@@ -180,17 +180,13 @@ function ResponsiveAppBar() {
                   </Typography>
                 </MenuItem>
 
-                {currentUser.is_super_admin && (
-                  <>
-                    <Divider />
+                <Divider />
 
-                    <MenuItem onClick={() => router.push(JOBS_PATH)}>
-                      <Typography sx={{ textAlign: "center", color: "black" }}>
-                        Jobs
-                      </Typography>
-                    </MenuItem>
-                  </>
-                )}
+                <MenuItem onClick={() => router.push(JOBS_PATH)}>
+                  <Typography sx={{ textAlign: "center", color: "black" }}>
+                    Jobs
+                  </Typography>
+                </MenuItem>
 
                 <Divider />
 
