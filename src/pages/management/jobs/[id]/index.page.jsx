@@ -11,14 +11,28 @@ import { DefaultLayout } from "@layouts";
 import { useAuth } from "@hooks";
 
 // Actions
-import { getJob } from "@actions";
+import { getJob, getJobScore } from "@actions";
 
 function ManagementJobPage() {
   const router = useRouter();
-  const { id } = router.query;
+  const { id, userId  } = router.query;
   const { currentUser } = useAuth();
-
   const [job, setJob] = useState();
+  const [score, setScore] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedScore = await getJobScore(id, currentUser._id);
+        setScore(fetchedScore);
+      } catch (error) {
+        console.error("Error loading score:", error);
+      }
+    };
+    fetchData();
+  }, [id, userId]);
+
+  console.log({score})
 
   useEffect(() => {
     const getData = async () => {
@@ -35,7 +49,7 @@ function ManagementJobPage() {
 
   return (
     <DefaultLayout>
-       <Grid flexDirection="column" display="flex" width="1500px">
+       <Grid flexDirection="column" display="flex" width="1500px" p={5}>
       <Box mt={5}>
         <Button onClick={() => router.push(JOBS_PATH)}>Back</Button>
 
@@ -103,7 +117,7 @@ function ManagementJobPage() {
           ):(
           <Grid item xs={12} mt={4}>
             <Typography variant="body1" color="textSecondary">
-              CV Score
+              geschiktheid: {score}
             </Typography>
           </Grid>
         )}
