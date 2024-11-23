@@ -10,7 +10,7 @@ import { CVTable } from "@modules";
 import { DefaultLayout } from "@layouts";
 
 // Actions
-import { getJob } from "@actions";
+import { getUsers } from "@actions";
 
 function ManagementJobSelectCVPage() {
   const router = useRouter();
@@ -19,17 +19,17 @@ function ManagementJobSelectCVPage() {
   const [users, setUsers] = useState();
 
   useEffect(() => {
-    const getData = async () => {
+    const fetchUsers = async () => {
       try {
-        const users = await getUsers();
-        setUsers(users);
+        const userData = await getUsers();
+        setUsers(userData);
       } catch (error) {
-        console.error("Error loading user:", error);
+        console.error("Error loading users:", error);
       }
     };
 
-    getData();
-  }, [id]);
+    fetchUsers();
+  }, []);
 
   return (
     <DefaultLayout>

@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-// Core
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from "@mui/material";
+function CVTable({ jobId, users = [] }) {
+  const router = useRouter();
 
-function CVTable({ jobId, users }) {
-  const handleSelect = async userId => {
+  const handleSelect = async (userId) => {
     try {
       const response = await axios.post(
         `http://localhost:8000/jobs/${jobId}/select-user`,
-        userId,
+        { userId }, // Wrap userId in an object for correct JSON payload
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json", // Use JSON format
           },
         }
       );
 
       console.log(response.data);
 
-      if (response.data?.success) router.reload();
+      if (response.data?.success) {
+        router.reload(); // Reload the page if the action is successful
+      }
     } catch (error) {
-      console.error("Error uploading file:", error);
+      console.error("Error selecting user:", error);
     }
   };
-
-  const rows = [];
 
   return (
     <TableContainer component={Paper}>
@@ -39,27 +50,36 @@ function CVTable({ jobId, users }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.skills}%</TableCell>
-              <TableCell>{user.experience}%</TableCell>
-              <TableCell>{user.goodEnough}</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => handleSelect(user.id)}
-                >
-                  Select
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {users
+            .filter(
+              (user) => user.name && user.skills && typeof user.skills === 'object' // Filter out users without name or valid skills
+            )
+            .map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>{user.name}</TableCell>
+
+                {/* Check if user.skills is defined and is an object */}
+                <TableCell>
+                  {user.percent_skills}%
+                </TableCell>
+
+                <TableCell>{user.percent_experience}%</TableCell>
+                <TableCell>{user.goodEnough ? "Yes" : "No"}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleSelect(user.id)}
+                  >
+                    Select
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-};
+}
 
 export default CVTable;
