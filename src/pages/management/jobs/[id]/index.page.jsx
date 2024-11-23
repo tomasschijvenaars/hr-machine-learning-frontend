@@ -8,7 +8,7 @@ import { Button } from "@components";
 // Utils
 import { JOBS_PATH, SELECT_CV_PATH  } from "@constants/path.const";
 import { DefaultLayout } from "@layouts";
-import { JOBS_PATH  } from "@constants/path.const";
+import { useAuth } from "@hooks";
 
 // Actions
 import { getJob } from "@actions";
