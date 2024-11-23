@@ -7,7 +7,7 @@ import { Button } from "@components";
 
 // Utils
 import { DefaultLayout } from "@layouts";
-import { JOBS_PATH  } from "@constants/path.const";
+import { JOBS_PATH, SELECT_CV_PATH } from "@constants/path.const";
 
 // Actions
 import { getJob } from "@actions";
@@ -84,16 +84,16 @@ function ManagementJobPage() {
             </Typography>
           </Grid>
 
-          {/* Apply Button
+          Apply Button
           <Grid item xs={12} mt={4}>
             <Button
               variant="contained"
               color="primary"
-              onClick={handleApplyClick}
+              onClick={() => router.push(SELECT_CV_PATH(id))}
             >
-              Apply Now
+              Select CV
             </Button>
-          </Grid> */}
+          </Grid>
         </Grid>
       </Box>
     </DefaultLayout>

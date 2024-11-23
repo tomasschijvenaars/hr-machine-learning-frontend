@@ -10,6 +10,7 @@ export const ADMIN_PATH = "/admin"
 export const JOBS_PATH = "/management/jobs/";
 export const JOB_PATH = id => `/management/jobs/${id}`;
 export const CREATE_JOB_PATH = "/management/jobs/create";
+export const SELECT_CV_PATH = id => `/management/jobs/${id}/select-cv`;
 
 //-------------------------------------------------------------
 // Public Routes

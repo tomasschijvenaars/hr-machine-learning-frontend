@@ -17,3 +17,8 @@ export {
 export {
   Job
 } from "./job";
+
+// Job
+export {
+  CVTable
+} from "./cv_table";
