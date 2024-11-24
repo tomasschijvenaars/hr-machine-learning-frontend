@@ -8,6 +8,7 @@ const styles = theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: '16px',
+        maxWidth: "50%"
     }
   });
   

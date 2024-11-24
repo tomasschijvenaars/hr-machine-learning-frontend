@@ -21,7 +21,7 @@ function Persona() {
   const { currentUser } = useAuth();
 
   return (
-    <Grid container justifyContent="center" mb={5}>
+    <Grid container justifyContent="left" mb={5}>
       <Card sx={{ maxWidth: 400, boxShadow: 3 }}>
         <CardHeader
           avatar={

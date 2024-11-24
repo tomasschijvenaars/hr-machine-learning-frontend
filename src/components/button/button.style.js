@@ -4,7 +4,7 @@ const styles = theme => ({
     textTransform: "initial",
     fontSize: theme.typography.body1.fontSize,
     "&.MuiButton-containedSecondary:hover": {
-      color: theme.palette.secondary.contrastText,
+      color: '#72BEAE',
     },
     [theme.breakpoints.down("md")]: {
       minWidth: 36,

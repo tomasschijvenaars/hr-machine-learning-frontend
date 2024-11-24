@@ -11,7 +11,7 @@ import { LOGIN_PATH } from "@constants/path.const";
 function RegisterPage() {
   const router = useRouter();
 
-  return (
+  return (    
     <Grid
       container
       spacing={0}
