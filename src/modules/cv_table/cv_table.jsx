@@ -17,19 +17,15 @@ function CVTable({ jobId, users = [] }) {
 
   const [results, setResults] = useState([]);
 
-  const handleSelect = async (userId) => {
+  const handleSelect = async (user) => {
     try {
-      // const response = await axios.post(
-      //   `http://localhost:8000/jobs/${jobId}/select-user`,
-      //   { "userId": userId }, // Wrap userId in an object for correct JSON payload
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json", // Use JSON format
-      //     },
-      //   }
-      // );
-
-      const response = await axios.post(`http://localhost:8000/jobs/${jobId}/select-user/${userId}`);
+      const response = await axios.post(`http://localhost:8000/jobs/${jobId}/select-user/${user.user.id}`, 
+        {
+          "percent_skills": user.skills_perc,
+          "percent_experience": user.experience_perc,
+          "job_succesful": user.result
+        }
+      );
 
       console.log(response.data);
     } catch (error) {
@@ -91,7 +87,7 @@ function CVTable({ jobId, users = [] }) {
                     }}
                     variant="contained"
                     color="secondary"
-                    onClick={() => handleSelect(user.user.id)}
+                    onClick={() => handleSelect(user)}
                   >
                     Select
                   </Button>
