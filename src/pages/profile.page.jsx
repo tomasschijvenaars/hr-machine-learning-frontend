@@ -16,13 +16,10 @@ function ProfilePage() {
 
   return (
     <ManagementLayout>
-    <Box mb={4}>
-      <Button variant="breadcrumbs" onClick={() => router.push(JOBS_PATH)}>Back</Button>
-    </Box>
     <Stack
       direction={isDesktop ? "row" : "column"}
       spacing={4}
-     
+      mt={isDesktop ? 5 : 1}
     >
       <Box flex={1} sx={{ maxWidth: isDesktop ? '50%' : '100%' }}>
       <Typography variant="h4" gutterBottom>
