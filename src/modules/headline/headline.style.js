@@ -5,7 +5,7 @@ const styles = theme => ({
         backgroundColor: 'red'
     },
     headlineButton: {
-        backgroundColor: 'black',
+        backgroundColor: '#294A3F',
         color: 'white',
         padding: '10px',
         fontSize: '16px',

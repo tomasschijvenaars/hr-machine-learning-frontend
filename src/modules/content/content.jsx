@@ -3,22 +3,22 @@ import Image from "next/image";
 import React from "react";
 
 // Core
-import { Box, Grid, Stack, Typography, useMediaQuery as muiUseMediaQuery } from "@mui/material";
+import { Box, Grid, Stack, Link, Typography, useMediaQuery as muiUseMediaQuery } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { useTheme } from "@mui/material/styles";
 
 // Utils
-import { CV_PATH } from "@constants/path.const";
+import { PROFILE_PATH, JOBS_PATH } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 // Style
-import placeholder from "../../../public/bg1.png";
 import styles from "./content.style";
 import { Button } from "@components";
-import PhoneIcon from '@mui/icons-material/Phone';
-import MailIcon from '@mui/icons-material/Mail';
-import StoreIcon from '@mui/icons-material/Store';
+import CheckIcon from '@mui/icons-material/Check';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import vacatures from "../../../public/vacatures.png";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -61,66 +61,147 @@ function Content() {
         {/* Card 1 */}
         <Stack direction="column" >
         <Box
-          sx={{
-            width: 150,
-            height: 150,
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
+        style={classes.howButtons}
         >
-          <Typography variant="body1">Upload je CV</Typography>
+        <UploadFileIcon style={classes.icons} />
         </Box>
-        <Typography variant="h6" fontWeight="bold" textAlign="center" mt={1}>
-          Stap 1
+        <Typography style={classes.steps} variant="h6" fontWeight="bold" textAlign="center" mt={1}>
+         Upload je cv
         </Typography>
         </Stack>
         {/* Card 2 */}
         <Stack direction="column" >
         <Box
-          sx={{
-            width: 150,
-            height: 150,
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
+           style={classes.howButtons}
         >
-          <Typography variant="body1">tekening idk</Typography>
+          <PsychologyIcon style={classes.icons}/>
         </Box>
-       
-        <Typography variant="h6" fontWeight="bold" textAlign="center" mt={1}>
-          Stap 2
+        <Typography style={classes.steps} variant="h6" fontWeight="bold" textAlign="center" mt={1}>
+          Wij berekenen
         </Typography>
         </Stack>
         {/* Card 3 */}
         <Stack direction="column" >
         <Box
-          sx={{
-            width: 150,
-            height: 150,
-            backgroundColor: "#e0e0e0",
-            borderRadius: "8px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
+          style={classes.howButtons}
         >
-          <Typography variant="body1">tekening idk</Typography>
+         <CheckIcon style={classes.icons} />
         </Box>
-        
-        <Typography variant="h6" fontWeight="bold" textAlign="center" mt={1}>
-          Stap 3
+        <Typography style={classes.steps} variant="h6" fontWeight="bold" textAlign="center" mt={1}>
+          Klaar!
         </Typography>
         </Stack>
       </Stack>
+    </Stack>
+    <Stack mt={8} p={2} style={classes.tips}>
+    <Typography fontWeight="bold" textAlign="center" mt={1}>
+          Tip #1
+    </Typography>
+    <Typography mt={2}>Upload je CV als een PDF-bestand om toegang te krijgen tot de beschikbare vacatures. Een PDF zorgt ervoor dat je CV netjes en goed leesbaar blijft</Typography>
+    </Stack>
+    <Stack
+  mt={8}
+  padding={isMobile ? "20px" : "0 0 0 230px"}
+  direction={isMobile ? 'column' : 'row'}
+  spacing={2}
+  alignItems={isMobile ? 'center' : 'start'} // Center items on mobile
+  justifyContent={isMobile ? 'center' : 'flex-start'} // Center layout on mobile
+>
+  {/* Left Side - Image */}
+  <Box
+    style={{
+      width: '300px',
+      height: 'auto',
+    }}
+  >
+    <Image
+      src={vacatures}
+      alt="Example"
+      style={{
+        width: '100%',
+        borderRadius: '8px',
+        objectFit: 'cover',
+        height: '100%',
+        border: '1px solid lightgrey',
+      }}
+    />
+  </Box>
+
+  {/* Right Side - Text and Button */}
+  <Box
+    style={{
+      alignItems: isMobile ? 'center' : 'flex-start',
+      textAlign: isMobile ? 'center' : 'left', // Center text and button on mobile
+      width: '400px',
+    }}
+  >
+    <Typography mt={isMobile ? 4 : 10} variant="body1" gutterBottom>
+      Bekijk beschikbare vacatures, nadat je je cv hebt geupload.
+    </Typography>
+    <Button
+       onClick={() => {
+        if (currentUser) return router.push(JOBS_PATH)
+        return router.push(LOGIN_PATH)
+      }}
+      variant="contained"
+      color="primary"
+      style={{
+        backgroundColor: '#294A3F',
+        marginTop: isMobile ? '16px' : '0',
+      }}
+    >
+      Bekijk vacatures!
+    </Button>
+  </Box>
+</Stack>
+<Stack mt={8} p={2} style={classes.tips}>
+<Typography fontWeight="bold" textAlign="center" mt={1}>
+      Tip #2
+</Typography>
+<Typography mt={2}>Heeft u nog geen CV? U kunt eenvoudig een professioneel CV downloaden of aanmaken via uw LinkedIn-profiel. Hiermee bespaart u tijd en beschikt u direct over een overzichtelijk en up-to-date documentn</Typography>
+</Stack>
+<Stack
+      direction={isMobile ? 'column' : 'row'}
+      spacing={isMobile ? 2 : 4}
+      alignItems="center"
+      mt={8}
+      justifyContent="center"
+      padding="20px"
+      width="100%"
+      style={{
+        backgroundColor: '#f8f9fa',
+        borderTop: '1px solid #e0e0e0',
+        textAlign: isMobile ? 'center' : 'left',
+      }}
+    >
+      {/* Link to Vacatures */}
+      <Link 
+         onClick={() => {
+          if (currentUser) return router.push(JOBS_PATH)
+          return router.push(LOGIN_PATH)
+        }} 
+        underline="hover" 
+        style={{ fontSize: '16px', color: '#1976d2', fontWeight: 'bold' }}
+      >
+        Vacatures
+      </Link>
+
+      {/* Link to Profile */}
+      <Link
+         onClick={() => {
+          if (currentUser) return router.push(PROFILE_PATH)
+          return router.push(LOGIN_PATH)
+        }}
+        underline="hover" 
+        style={{ fontSize: '16px', color: '#1976d2', fontWeight: 'bold' }}
+      >
+        Profiel
+      </Link>
+
+      {/* Footer Text */}
+      <Typography variant="body2" style={{ color: '#6c757d' }}>
+        © {new Date().getFullYear()} HRML. Alle rechten voorbehouden.
+      </Typography>
     </Stack>
   </Grid>
   );

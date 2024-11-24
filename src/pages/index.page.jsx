@@ -25,7 +25,7 @@ function ManagementGeneralPage() {
           <Headline />
         </Grid>
 
-        <Grid flexDirection="row" display="flex" mb={5}>
+        <Grid flexDirection="row" display="flex" >
           <Content />
         </Grid>
       </Grid>
