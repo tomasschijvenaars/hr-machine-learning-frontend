@@ -26,6 +26,7 @@ import { useAuth } from "@hooks";
 
 // Style
 import styles from "./app_bar.style";
+import PersonIcon from '@mui/icons-material/Person';
 
 function ResponsiveAppBar() {
   const theme = useTheme();
@@ -101,14 +102,14 @@ function ResponsiveAppBar() {
               sx={{ display: { xs: "block", md: "none" } }}
             >
               <Button
-                onClick={() => router.push(ABOUT_PATH)}
+                  onClick={() => router.push(JOBS_PATH)}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
-                Over
+                Vacatures
               </Button>
 
               <Button
-                onClick={() => router.push(TIPS_PATH)}
+                onClick={() => router.push("/#tips")}
                 sx={{ my: 2, color: "black", display: "block" }}
               >
                 Tips
@@ -145,7 +146,7 @@ function ResponsiveAppBar() {
             </Button>
 
             <Button
-              onClick={() => router.push("/#tips")}
+              href="/#tips"
               sx={{ my: 2, color: "black", display: "block" }}
             >
               Tips
@@ -156,9 +157,9 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             {currentUser?._id ? (
               <>
-                <Tooltip title="Open settings">
+                <Tooltip title="Open account">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <PersonIcon sx={{fontSize: '30px'}}/>
                   </IconButton>
                 </Tooltip>
 
@@ -202,9 +203,9 @@ function ResponsiveAppBar() {
                 </Menu>
               </>
             ) : (
-              <Tooltip title="Open settings">
+              <Tooltip title="Open account">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Gebruiker" src="/static/images/avatar/2.jpg" />
+                <PersonIcon sx={{fontSize: '30px'}}/>
                 </IconButton>
               </Tooltip>
             )}
