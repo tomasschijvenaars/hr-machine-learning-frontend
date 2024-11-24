@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -15,27 +15,49 @@ import { useRouter } from "next/router";
 function CVTable({ jobId, users = [] }) {
   const router = useRouter();
 
+  const [results, setResults] = useState([]);
+
   const handleSelect = async (userId) => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/jobs/${jobId}/select-user`,
-        { userId }, // Wrap userId in an object for correct JSON payload
-        {
-          headers: {
-            "Content-Type": "application/json", // Use JSON format
-          },
-        }
-      );
+      // const response = await axios.post(
+      //   `http://localhost:8000/jobs/${jobId}/select-user`,
+      //   { "userId": userId }, // Wrap userId in an object for correct JSON payload
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json", // Use JSON format
+      //     },
+      //   }
+      // );
+
+      const response = await axios.post(`http://localhost:8000/jobs/${jobId}/select-user/${userId}`);
 
       console.log(response.data);
-
-      if (response.data?.success) {
-        router.reload(); // Reload the page if the action is successful
-      }
     } catch (error) {
       console.error("Error selecting user:", error);
     }
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8000/knn/${jobId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log(data.results);
+        setResults(data.results);
+      } catch (error) {
+        console.error("Error loading user:", error);
+      }
+    };
+
+    getData();
+  }, [jobId]);
 
   return (
     <TableContainer component={Paper}>
@@ -50,21 +72,18 @@ function CVTable({ jobId, users = [] }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users
-            .filter(
-              (user) => user.name && user.skills && typeof user.skills === 'object' // Filter out users without name or valid skills
-            )
-            .map((user) => (
+          {results
+            ?.map((user) => (
               <TableRow key={user.id}>
-                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.user.name}</TableCell>
 
                 {/* Check if user.skills is defined and is an object */}
                 <TableCell>
-                  {user.percent_skills}%
+                  {user.skills_perc}%
                 </TableCell>
 
-                <TableCell>{user.percent_experience}%</TableCell>
-                <TableCell>{user.goodEnough ? "Yes" : "No"}</TableCell>
+                <TableCell>{user.experience_perc}%</TableCell>
+                <TableCell>{user.result ? "Yes" : "No"}</TableCell>
                 <TableCell>
                   <Button
                     sx={{
@@ -72,7 +91,7 @@ function CVTable({ jobId, users = [] }) {
                     }}
                     variant="contained"
                     color="secondary"
-                    onClick={() => handleSelect(user.id)}
+                    onClick={() => handleSelect(user.user.id)}
                   >
                     Select
                   </Button>

@@ -34,7 +34,7 @@ function ManagementJobSelectCVPage() {
   return (
     <DefaultLayout>
       <Box m={20}>
-        <CVTable users={users}/>
+        <CVTable jobId={id} users={users}/>
       </Box>
     </DefaultLayout>
   );
