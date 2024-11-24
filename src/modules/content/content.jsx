@@ -136,7 +136,7 @@ function Content() {
     }}
   >
     <Typography mt={isMobile ? 4 : 10} variant="body1" gutterBottom>
-      Bekijk beschikbare vacatures, nadat je je cv hebt geupload.
+      Upload je CV en ontdek direct welke vacatures perfect bij jou passen!
     </Typography>
     <Button
        onClick={() => {
