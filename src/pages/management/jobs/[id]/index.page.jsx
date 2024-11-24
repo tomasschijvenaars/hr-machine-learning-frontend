@@ -116,9 +116,18 @@ function ManagementJobPage() {
           </Grid>
           ):(
           <Grid item xs={12} mt={4}>
-            <Typography variant="body1" color="textSecondary">
-              geschiktheid: {score}
+            <Typography variant="body1" color="black" fontWeight='bold'>
+              Ordeel:
             </Typography>
+             {score == 1 ? (
+            <Typography variant="body1" color="textSecondary">
+              U bent geschikt voor deze functie
+            </Typography>
+             ): (
+              <Typography variant="body1" color="textSecondary">
+              U bent niet geschikt voor deze functie
+            </Typography>
+             )}
           </Grid>
         )}
         </Grid>
