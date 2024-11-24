@@ -21,12 +21,13 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 // Utils
-import { PROFILE_PATH, ABOUT_PATH, TIPS_PATH, JOBS_PATH } from "@constants/path.const";
+import { PROFILE_PATH, DASHBOARD_PATH, JOBS_PATH } from "@constants/path.const";
 import { useAuth } from "@hooks";
 
 // Style
 import styles from "./app_bar.style";
 import PersonIcon from '@mui/icons-material/Person';
+import HomeIcon from '@mui/icons-material/Home';
 
 function ResponsiveAppBar() {
   const theme = useTheme();
@@ -138,6 +139,14 @@ function ResponsiveAppBar() {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {currentUser.is_super_admin && (
+            <Button
+              onClick={() => router.push(DASHBOARD_PATH)}
+              sx={{  color: "black", display: "block" }}
+            >
+              <HomeIcon />
+            </Button>
+          )}
             <Button
               onClick={() => router.push(JOBS_PATH)}
               sx={{ my: 2, color: "black", display: "block" }}

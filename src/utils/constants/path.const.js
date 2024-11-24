@@ -7,6 +7,7 @@ export const PROFILE_PATH = "/profile";
 export const ADMIN_PATH = "/admin"
 
 /* Management pages */
+export const DASHBOARD_PATH = "/management";
 export const JOBS_PATH = "/management/jobs/";
 export const JOB_PATH = id => `/management/jobs/${id}`;
 export const CREATE_JOB_PATH = "/management/jobs/create";
