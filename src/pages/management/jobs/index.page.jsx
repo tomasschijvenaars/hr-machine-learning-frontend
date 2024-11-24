@@ -26,15 +26,16 @@ function ManagementJobsPage() {
     const getData = async () => {
       try {
         const jobs = await getJobs();
-        setJobs(jobs);
-        if (jobs.length > 0) {
-          setSelectedJob(jobs[0]);
+        const enabledJobs = jobs.filter((job) => !job.disabled);
+        setJobs(enabledJobs);
+        if (enabledJobs.length > 0) {
+          setSelectedJob(enabledJobs[0]);
         }
       } catch (error) {
         console.error("Error loading jobs:", error);
       }
     };
-
+  
     getData();
   }, []);
 

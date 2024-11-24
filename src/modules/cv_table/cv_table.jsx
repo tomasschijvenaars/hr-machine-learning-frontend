@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { JOBS_PATH } from "src/utils/constants/path.const";
 
 function CVTable({ jobId, users = [] }) {
   const router = useRouter();
@@ -28,6 +29,7 @@ function CVTable({ jobId, users = [] }) {
       );
 
       console.log(response.data);
+      router.push(JOBS_PATH);
     } catch (error) {
       console.error("Error selecting user:", error);
     }
