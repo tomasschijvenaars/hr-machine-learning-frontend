@@ -28,7 +28,7 @@ function Headline() {
       container
       justifyContent="center"
       alignItems="center"
-      style={{ backgroundColor: '#CDCDCD', height: '81.7vh', width: '100%' }}
+      style={{ backgroundColor: '#72BEAE', height: '81.7vh', width: '100%' }}
     >
       <Grid item sm={12} md={7} style={{ textAlign: 'center' }}>
         <Stack 
@@ -38,7 +38,7 @@ function Headline() {
           <Typography variant="h2" mb={3} style={{ fontWeight: 'bold', color: 'white', textAlign: 'start' }}>
             Stuur je CV naar ons!
           </Typography>
-          <Typography variant="body1" mb={5} style={{ color: '#7a7a7a', maxWidth: isMobile ? '100%' : '70%', textAlign: 'start' }}>
+          <Typography variant="body1" mb={5} style={{ color: 'white', maxWidth: isMobile ? '100%' : '70%', textAlign: 'start' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et dictum felis, at semper risus. Phasellus id convallis quam.
           </Typography>
           <Button 
